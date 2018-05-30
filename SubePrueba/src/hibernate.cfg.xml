@@ -24,5 +24,6 @@
 		<mapping resource = "mapeos/LineaColectivo.hbm.xml"/>
 		<mapping resource = "mapeos/LineaTren.hbm.xml"/>
 		<mapping resource = "mapeos/LineaSubte.hbm.xml"/>
+		<mapping resource = "mapeos/RedSube.hbm.xml"/>
 	</session-factory >
 </hibernate-configuration >

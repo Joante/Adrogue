@@ -16,6 +16,7 @@ public class MovimientoABM {
 	private TarjetaABM tarjetaAbm = new TarjetaABM();
 	private Transporte transporte = new Transporte();
 	private Tarjeta tarjeta= new Tarjeta();
+	private RedSubeABM redSube = new RedSubeABM();
 	
 	public int agregarMovimiento(GregorianCalendar fechaHora, long nrotarjeta, long idTransporte, int estacionOseccion,int estacionBajada) throws Exception {
 		transporte=transporteAbm.traerTransporte(idTransporte);
@@ -59,18 +60,23 @@ public class MovimientoABM {
 		TarifaTrenABM tarifaTren =new TarifaTrenABM();
 		Tarifa tarifa ;
 		Movimiento c=null;
+		double valor;
 		if(tarjeta.isTarifaSocial()) {
 			tarifa=(Tarifa) tarifaTren.calcularTarifaTrenTarifaSocial(estacionSubida,tarjeta,estacionBajada);
 		} else {
 			tarifa= (Tarifa) tarifaTren.calcularTarifaTrenComun(estacionSubida,tarjeta,estacionBajada);
 		}
+		valor=redSube.calcularRedSube(c);
+		tarifa.setValorTarifa(valor);
 		c= new Movimiento(fechaHora,tarjeta,tarifa,transporte);
 		return c;
 	}
 	public Movimiento movimientoColectivo(GregorianCalendar fechaHora, Tarjeta tarjeta, Transporte transporte, int seccion) throws Exception {
 		TarifaColectivoABM tarifaColectivo = new TarifaColectivoABM();
-		Tarifa tarifa;
+		Tarifa tarifa = new Tarifa();
 		Movimiento c = null;
+		double valor;
+
 		if(tarjeta.isTarifaSocial()) {
 			tarifa= (Tarifa) tarifaColectivo.calcularTarifaColectivoTarifaSocial(seccion);
 		}
@@ -78,14 +84,16 @@ public class MovimientoABM {
 			tarifa = (Tarifa) tarifaColectivo.calcularTarifaColectivoComun(seccion);
 		}
 		c= new Movimiento(fechaHora,tarjeta,tarifa,transporte);
+		valor=redSube.calcularRedSube(c);
+		tarifa.setValorTarifa(valor);
+		c.setTarifa(tarifa);
 		return c;
 	}
 	public Movimiento movimientoSubte(GregorianCalendar fechaHora, Tarjeta tarjeta, Transporte transporte) throws Exception {
 		TarifaSubteABM tarifaSubte = new TarifaSubteABM();
 		Tarifa tarifa;
 		Movimiento c = null;
-		System.out.println(""+tarjeta.getMesDescuentoViajesSubte());
-		System.out.println(""+fechaHora.get(Calendar.MONTH));
+		double valor;
 		if (tarjeta.getMesDescuentoViajesSubte()!=fechaHora.get(Calendar.MONTH)){
 			tarjeta.setMesDescuentoViajesSubte(fechaHora.get(Calendar.MONTH));
 			tarjeta.setContadorViajesSubte(1);
@@ -98,6 +106,9 @@ public class MovimientoABM {
 			tarifa = (Tarifa) tarifaSubte.calcularTarifaSubteComun(tarjeta.getContadorViajesSubte());
 		}
 		c= new Movimiento(fechaHora,tarjeta,tarifa,transporte);
+		valor=redSube.calcularRedSube(c);
+		tarifa.setValorTarifa(valor);
+		c.setTarifa(tarifa);
 		int contadorViajesSubte=tarjeta.getContadorViajesSubte()+1;
 		tarjeta.setContadorViajesSubte(contadorViajesSubte);
 		tarjetaAbm.modificarTarjeta(tarjeta);

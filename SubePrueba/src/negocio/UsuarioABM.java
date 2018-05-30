@@ -7,7 +7,10 @@ import datos.Usuario;
 public class UsuarioABM {
 	private UsuarioDao dao = new UsuarioDao();
 
-	public int agregarUsuario(String nombre, String apellido,long dni){
+	public int agregarUsuario(String nombre, String apellido,long dni)throws Exception{
+		if(dao.traerUsuarioDni(dni)!=null) {
+			throw new Exception ("Error. Usuario ya ingresado");
+		}
 		Usuario u = new Usuario (nombre, apellido,dni);
 		return dao.agregarUsuario(u);
 	}
@@ -25,7 +28,9 @@ public class UsuarioABM {
 		return dao.traerUsuario(idUsuario);
 	}
 	
-	
+	public Usuario traerUsuarioDni(long dni) {
+		return dao.traerUsuarioDni(dni);
+	}
 	
 	/*public List<Usuario> traerUsuario(){
 		return dao.traerUsuario();

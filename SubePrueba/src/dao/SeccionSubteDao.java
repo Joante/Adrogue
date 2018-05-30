@@ -80,10 +80,21 @@ public class SeccionSubteDao {
 	}
 	public SeccionSubte traerSeccionSubte (int cantidadDeViajes) throws HibernateException{
 		SeccionSubte objeto= null;
+		long id=1;
+		if(cantidadDeViajes>0&&cantidadDeViajes<21) {
+			id=1;
+		}else if(cantidadDeViajes>20&&cantidadDeViajes<31) {
+			id=2; 
+		}
+		if(cantidadDeViajes>30&&cantidadDeViajes<41) {
+			id=3;
+		}
+		if(cantidadDeViajes>41) {
+			id=4;
+		}
 		try {
 			iniciaOperacion();
-			String hql= "from SeccionSubte c where c.cantidadViajesMinimo between "+cantidadDeViajes+"and "+(cantidadDeViajes+1);
-			objeto = (SeccionSubte) session.createQuery(hql).uniqueResult();
+			objeto = (SeccionSubte) session.get(SeccionSubte.class, id);
 		}
 		finally {
 			session.close();

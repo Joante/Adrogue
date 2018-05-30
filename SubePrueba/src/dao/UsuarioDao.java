@@ -5,6 +5,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import datos.Usuario;
 import datos.Usuario;
 
 public class UsuarioDao {
@@ -76,6 +78,16 @@ public class UsuarioDao {
 		}
 		finally {
 			session.close();
+		}
+		return objeto;
+	}
+	public Usuario traerUsuarioDni (long dni) throws HibernateException {
+		Usuario objeto = null ;
+		try {
+			iniciaOperacion();
+			objeto = (Usuario) session.createQuery( "from Usuario c where c.dni=" +dni).uniqueResult();
+		} finally {
+			session .close();
 		}
 		return objeto;
 	}

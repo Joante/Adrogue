@@ -33,7 +33,9 @@ public class TarifaSubteABM {
 		SeccionSubte seccion = seccionSubteAbm.traerSeccionSubte(cantViajes);
 		TarifaSubte tarifa=new TarifaSubte();
 		tarifa.setSeccion(seccion);
+		
 		tarifa.setValorTarifa(seccion.getValorSubteNormal());
+		
 		return tarifa;
 	}
 	public TarifaSubte calcularTarifaSubteTarifaSocal(int cantViajes) {

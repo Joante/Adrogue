@@ -20,6 +20,7 @@ public class TestAgregarMovimiento {
 		// TODO Auto-generated method stub
 		UsuarioABM usuario = new UsuarioABM();
 		GregorianCalendar fecha = new GregorianCalendar();
+		
 		//usuario.agregarUsuario("Joan", "Teich", 39429876);
 		LineaTrenABM lineaTren = new LineaTrenABM();
 		EstacionTrenABM estacionTren = new EstacionTrenABM();
@@ -32,25 +33,25 @@ public class TestAgregarMovimiento {
 		ColectivoABM colectivoAbm = new ColectivoABM();
 		LineaSubteABM lineaSubteAbm = new LineaSubteABM();
 		SubteABM subte = new SubteABM();
-		lineaSubteAbm.agregarSubte('A');
+		//lineaSubteAbm.agregarSubte('A');
 		//subte.agregarSubte(3, "Subte", lineaSubteAbm.traerSubte(1));
 		
 		//lineaColectivoAbm.agregarColectivo("Talp", 308);
 		//colectivoAbm.agregarColectivo(2, "Colectivo", 1, lineaColectivoAbm.traerLineaColectivo(1));
 		try {
-			movimiento.agregarMovimiento(fecha,6061268125294963l, 1, 1, 6 );
+		//	movimiento.agregarMovimiento(fecha,6061268125294963l, 1, 1, 6 );
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			//movimiento.agregarMovimiento(fecha, 6061268125294963l, 3, 2);
+			movimiento.agregarMovimiento(fecha, 6061268125294963l, 2, 2,0);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			System.out.println(""+e.getMessage());
 		}
 		try {
-			//movimiento.agregarMovimiento(fecha, 6061268125294963l, 2, 0);
+			//movimiento.agregarMovimiento(fecha, 6061268125294963l, 1, 0,0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			

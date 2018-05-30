@@ -8,9 +8,13 @@ import datos.Tarjeta;
 import datos.Usuario;
 public class TarjetaABM {
 	private TarjetaDao dao = new TarjetaDao();
-
-	public int agregarTarjeta(long nroTarjeta, double saldo, boolean tarifaSocial,Usuario usuario){
+	private RedSubeABM redSube = new RedSubeABM();
+	public int agregarTarjeta(long nroTarjeta, double saldo, boolean tarifaSocial,Usuario usuario)throws Exception{
+		if(dao.traerTarjetaNro(nroTarjeta)!=null) {
+			throw new Exception("Error. Tarjeta ya ingresada");
+		}
 		Tarjeta c = new Tarjeta (nroTarjeta,saldo,tarifaSocial,usuario);
+		redSube.agregarRedSube(0, c);
 		return dao.agregar(c);
 	}
 

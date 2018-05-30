@@ -7,6 +7,7 @@ public class Movimiento {
 	private Tarjeta tarjeta;
 	private Tarifa tarifa;
 	private Transporte transporte;
+	private String descripcionRedSube;
 	
 	public Movimiento() {}
 
@@ -17,6 +18,7 @@ public class Movimiento {
 		this.tarjeta = tarjeta;
 		this.tarifa = tarifa;
 		this.transporte = transporte;
+		this.descripcionRedSube="";
 	}
 
 	public long getIdMovimiento() {
@@ -57,6 +59,14 @@ public class Movimiento {
 
 	public void setTransporte(Transporte transporte) {
 		this.transporte = transporte;
+	}
+	
+	public String getDescripcionRedSube() {
+		return descripcionRedSube;
+	}
+
+	public void setDescripcionRedSube(String descripcionRedSube) {
+		this.descripcionRedSube = descripcionRedSube;
 	}
 
 	@Override
