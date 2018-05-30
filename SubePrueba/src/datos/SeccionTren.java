@@ -36,6 +36,12 @@ public class SeccionTren {
 	public void setValorSeccionTarifaSocial(double valorSeccionTarifaSocial) {
 		this.valorSeccionTarifaSocial = valorSeccionTarifaSocial;
 	}
+
+	@Override
+	public String toString() {
+		return "SeccionTren [idSeccionTren=" + idSeccionTren + ", valorSeccionComun=" + valorSeccionComun
+				+ ", valorSeccionTarifaSocial=" + valorSeccionTarifaSocial + "]";
+	}
 	
 	
 	

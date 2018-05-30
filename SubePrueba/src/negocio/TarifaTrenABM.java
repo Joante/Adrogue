@@ -34,40 +34,36 @@ public class TarifaTrenABM {
 	public TarifaTren traerTarifaTren(long idTarifaColectivo){
 		return dao.traerTarifaTren(idTarifaColectivo);
 	}
-	public Tarifa calcularTarifaTrenComun (long estacion, Tarjeta tarjeta) throws Exception {
+	public Tarifa calcularTarifaTrenComun (long estacionSubida, Tarjeta tarjeta,int estacionBajada) throws Exception {
 		Tarifa c = null;
-		TarifaTren tarifa;
-		if(tarjeta.isCobroOdevolucionTren()) {
-			tarifaTren.setEstacionSubida(estacionTrenAbm.traerEstacionTren(estacion));
-			tarifaTren.setValorTarifa(seccionTrenAbm.traerValorSeccionComun(3));
-			tarifaTren.setSeccion(seccionTrenAbm.traerSeccionTren(3));
-			tarifaTren.setEstacionBajada(estacionTrenAbm.traerEstacionTren(14));
+		//if(tarjeta.isCobroOdevolucionTren()) {
+			tarifaTren=dao.traerSeccion(estacionSubida, estacionBajada);
+			tarifaTren.setValorTarifa(seccionTrenAbm.traerValorSeccionComun((long) tarifaTren.getSeccion().getValorSeccionComun()));
 			
-		} else
+			
+		/*} else
 		{
+			tarifaTren=dao.traerUltima();
 			tarifaTren.setEstacionBajada(estacionTrenAbm.traerEstacionTren(estacion));
 			tarifa=dao.traerSeccion(tarifaTren.getEstacionSubida(), tarifaTren.getEstacionBajada());
 			tarifaTren.setValorTarifa(seccionTrenAbm.traerValorSeccionComun(tarifa.getSeccion().getIdSeccionTren()));
-		}
+		}*/
 		c = (Tarifa) tarifaTren;
 		return c;
 	}
-	public Tarifa calcularTarifaTrenTarifaSocial (long estacion,Tarjeta tarjeta) throws Exception {
+	public Tarifa calcularTarifaTrenTarifaSocial (long estacionSubida,Tarjeta tarjeta,int estacionBajada) throws Exception {
 		Tarifa c = null;
-		TarifaTren tarifa;
-		if(tarifaTren.isCobroViaje()) {
-			tarifaTren.setEstacionSubida(estacionTrenAbm.traerEstacionTren(estacion));
-			tarifaTren.setValorTarifa(seccionTrenAbm.traerValorSeccionComun(3));
-			tarifaTren.setSeccion(seccionTrenAbm.traerSeccionTren(3));
-			tarifaTren.setEstacionBajada(estacionTrenAbm.traerEstacionTren(14));
-			tarifaTren.setCobroViaje(true);			
-		} else
-		{
+		//TarifaTren tarifa;
+		//if(tarifaTren.isCobroViaje()) {
+			tarifaTren=dao.traerSeccion(estacionSubida, estacionBajada);
+			tarifaTren.setValorTarifa(tarifaTren.getSeccion().getValorSeccionTarifaSocial());
+		//} else
+		/*{
 			tarifaTren.setEstacionBajada(estacionTrenAbm.traerEstacionTren(estacion));
 			tarifa=dao.traerSeccion(tarifaTren.getEstacionSubida(), tarifaTren.getEstacionBajada());
 			tarifaTren.setValorTarifa(seccionTrenAbm.traerValorSeccionTarifaSocial(tarifa.getSeccion().getIdSeccionTren()));
 			tarifaTren.setCobroViaje(false);
-		}
+		}*/
 		c = (Tarifa) tarifaTren;
 		return c;
 	}

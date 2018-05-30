@@ -39,7 +39,7 @@ public abstract class TestPruebaCargaDeDatos {
 	    //---------------------------------AGREGAR SECCION SUBTE-------------------------------------------------------
 	   
 		SeccionSubteDao seccionSubteDao = new SeccionSubteDao();
-		/*
+		
 		SeccionSubte secS1=new SeccionSubte(1,20,7.50,3.37);
 		seccionSubteDao.agregar(secS1);
 		
@@ -51,23 +51,23 @@ public abstract class TestPruebaCargaDeDatos {
 		
 		SeccionSubte secS4=new SeccionSubte(41,0,4.5,2.02);
 		seccionSubteDao.agregar(secS4);
-		*/
+		
 		//-------------------------------------AGREGAR SECCION TREN-------------------------------------------------
 		
 		SeccionTrenABM seccionlineaTrenAbm = new SeccionTrenABM();
-		/*
+		
 		seccionlineaTrenAbm.agregarSeccionTren(2.75,1.24);
 		
 		seccionlineaTrenAbm.agregarSeccionTren(4,1.8);
 		
 		seccionlineaTrenAbm.agregarSeccionTren(5.5,2.48);
-		*/
+		
 		//-------------------------------------AGREGAR LINEA TREN--------------------------------------------
 		
 		LineaTrenABM lineaTrenAbm = new LineaTrenABM();
 		TrenABM trenAbm = new TrenABM();
-		//lineaTrenAbm.agregarLineaTren("Linea Roca");
-		//trenAbm.agregarTren(1, "Tren", lineaTrenAbm.traerLineaTren(1));
+		lineaTrenAbm.agregarLineaTren("Linea Roca");
+		trenAbm.agregarTren(1, "Tren", lineaTrenAbm.traerLineaTren(1));
 		
 		//------------------------------------ AGREGAR ESTACIONES DE TREN-----------------------------
 		EstacionTrenABM estacionlineaTrenAbm= new EstacionTrenABM();

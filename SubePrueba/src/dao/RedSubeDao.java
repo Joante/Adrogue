@@ -1,15 +1,13 @@
 package dao;
-import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.EstacionTren;
-import datos.SeccionTren;
-import datos.TarifaTren;
+import datos.RedSube;
 
-public class TarifaTrenDao {
+public class RedSubeDao {
 	private static Session session;
 	private Transaction tx;
 
@@ -23,7 +21,7 @@ public class TarifaTrenDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
-	public int agregar(TarifaTren objeto) {
+	public int agregar(RedSube objeto) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -40,7 +38,7 @@ public class TarifaTrenDao {
 		return id;
 	}
 
-	public void actualizar(TarifaTren objeto) throws HibernateException {
+	public void actualizar(RedSube objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(objeto);
@@ -55,7 +53,7 @@ public class TarifaTrenDao {
 		}
 	}
 
-	public void eliminar(TarifaTren objeto) throws HibernateException {
+	public void eliminar(RedSube objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.delete(objeto);
@@ -70,38 +68,17 @@ public class TarifaTrenDao {
 		}
 	}
 
-	public TarifaTren traerTarifaTren(long idTarifaTren) throws HibernateException {
-		TarifaTren objeto = null;
+	
+	public RedSube traerRedSubeNro(long idTarjeta) throws HibernateException{
+		RedSube objeto = null;
 		try {
 			iniciaOperacion();
-			objeto = (TarifaTren) session.get(TarifaTren.class, idTarifaTren);
-		}
-		finally {
-			session.close();
+			String hql= "from RedSube c inner join fetch c.tarjeta where c.tarjeta ="+idTarjeta;
+			objeto =  (RedSube) session.createQuery(hql).uniqueResult();
+		} finally {
+			session .close();
 		}
 		return objeto;
 	}
-	public TarifaTren traerSeccion(long estacionSubida, long estacionBajada) {
-		TarifaTren c = null;
-		try {
-			iniciaOperacion();
-			c = (TarifaTren) session.createQuery("from TarifaTren c inner join fetch c.seccion where c.estacionSubida="+estacionSubida+"and c.estacionBajada="+estacionBajada).uniqueResult();
-		}
-		finally {
-			session.close();
-		}
-		return c;
-	}
-	public TarifaTren traerUltima() {
-		TarifaTren tarifa=null;
-		int id;
-		try {
-			iniciaOperacion();
-			id = (int) session.createQuery("select MAX(idTarifaTren) from TarifaTren").uniqueResult();
-			tarifa = traerTarifaTren(id);
-		} finally {
-			session.close();
-		}
-		return tarifa;
-	}
 }
+

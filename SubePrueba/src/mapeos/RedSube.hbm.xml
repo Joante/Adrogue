@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name = "datos.RedSube" table = "redSube" >
+		<id name = "idRedSube" column = "idRedSube">
+			<generator class = "foreign" >
+				<param name = "property">tarjeta</param>
+			</generator >
+		</id >
+		<property name = "contadorViajes" type = "int" column = "contadorViajes" />
+		<property name = "ultimoTipoTransporte" type = "int" column = "ultimoTipoTransporte" />
+		<property name = "fechaHoraRedSube" type = "Calendar" column = "fechaHoraRedSube" />
+		<one-to-one name = "tarjeta" class = "datos.Tarjeta" ></one-to-one >
+	</class >
+</hibernate-mapping >

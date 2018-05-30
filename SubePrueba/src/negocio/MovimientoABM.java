@@ -17,26 +17,30 @@ public class MovimientoABM {
 	private Transporte transporte = new Transporte();
 	private Tarjeta tarjeta= new Tarjeta();
 	
-	public int agregarMovimiento(GregorianCalendar fechaHora, long nrotarjeta, long idTransporte, int estacionOseccion) throws Exception {
+	public int agregarMovimiento(GregorianCalendar fechaHora, long nrotarjeta, long idTransporte, int estacionOseccion,int estacionBajada) throws Exception {
 		transporte=transporteAbm.traerTransporte(idTransporte);
 		Movimiento c = null;
 		tarjeta= tarjetaAbm.traerTarjetaNro(nrotarjeta);
 		switch (transporte.getTipoTransporte()) {
 			case 1:
-				c=movimientoTren(fechaHora,tarjeta,transporte,estacionOseccion);
-				if(tarjeta.isCobroOdevolucionTren()) {
-					tarjetaAbm.descontarSaldo(tarjeta.getNroTarjeta(), c.getTarifa().getValorTarifa());
+				double saldo=tarjeta.getSaldo();
+				c=movimientoTren(fechaHora,tarjeta,transporte,estacionOseccion,estacionBajada);
+				/*if(tarjeta.isCobroOdevolucionTren()) {
 					tarjeta.setCobroOdevolucionTren(false);
+					saldo=saldo-c.getTarifa().getValorTarifa();
+					tarjeta.setSaldo(saldo);
 					tarjetaAbm.modificarTarjeta(tarjeta);
 					dao.agregar(c);
 				}
 				else {
 					if(c.getTarifa().getValorTarifa()<5.5) {
-						tarjetaAbm.agregarSaldo(tarjeta.getNroTarjeta(),c.getTarifa().getValorTarifa(), false);
+						saldo=c.getTarifa().getValorTarifa()+saldo;
 					}
+					tarjeta.setSaldo(saldo);
 					tarjeta.setCobroOdevolucionTren(true);
 					tarjetaAbm.modificarTarjeta(tarjeta);
-				}	
+				}*/
+				tarjetaAbm.descontarSaldo(tarjeta.getNroTarjeta(), c.getTarifa().getValorTarifa());
 				break;
 			case 2:
 				c=movimientoColectivo(fechaHora,tarjeta,transporte,estacionOseccion);
@@ -51,16 +55,15 @@ public class MovimientoABM {
 		}
 		return 1;
 	}
-	public Movimiento movimientoTren(GregorianCalendar fechaHora, Tarjeta tarjeta, Transporte transporte, int estacion) throws Exception {
+	public Movimiento movimientoTren(GregorianCalendar fechaHora, Tarjeta tarjeta, Transporte transporte, int estacionSubida, int estacionBajada) throws Exception {
 		TarifaTrenABM tarifaTren =new TarifaTrenABM();
 		Tarifa tarifa ;
 		Movimiento c=null;
 		if(tarjeta.isTarifaSocial()) {
-			tarifa=(Tarifa) tarifaTren.calcularTarifaTrenTarifaSocial(estacion,tarjeta);
+			tarifa=(Tarifa) tarifaTren.calcularTarifaTrenTarifaSocial(estacionSubida,tarjeta,estacionBajada);
 		} else {
-			tarifa= (Tarifa) tarifaTren.calcularTarifaTrenComun(estacion,tarjeta);
+			tarifa= (Tarifa) tarifaTren.calcularTarifaTrenComun(estacionSubida,tarjeta,estacionBajada);
 		}
-		tarjetaAbm.descontarSaldo(tarjeta.getNroTarjeta(), tarifa.getValorTarifa());
 		c= new Movimiento(fechaHora,tarjeta,tarifa,transporte);
 		return c;
 	}
