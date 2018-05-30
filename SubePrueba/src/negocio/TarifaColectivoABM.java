@@ -27,5 +27,21 @@ public class TarifaColectivoABM {
 	public TarifaColectivo traerTarifaColectivo(long idTarifaColectivo){
 		return dao.traerTarifaColectivo(idTarifaColectivo);
 	}
+	public TarifaColectivo calcularTarifaColectivoComun(int seccion) {
+		SeccionColectivoABM seccionAbm = new SeccionColectivoABM();
+		TarifaColectivo tarifa= new TarifaColectivo();
+		tarifa.setSeccion(seccionAbm.traerSeccionColectivo(seccion));
+		tarifa.setValorTarifa(tarifa.getSeccion().getValorSeccionComun());
+		
+		return tarifa;
+	}
+	public TarifaColectivo calcularTarifaColectivoTarifaSocial(int seccion) {
+		SeccionColectivoABM seccionAbm = new SeccionColectivoABM();
+		TarifaColectivo tarifa= new TarifaColectivo();
+		tarifa.setSeccion(seccionAbm.traerSeccionColectivo(seccion));
+		tarifa.setValorTarifa(tarifa.getSeccion().getValorSeccionTarifaSocial());
+		
+		return tarifa;
+	}
 	
 }

@@ -1,18 +1,15 @@
 package negocio;
 
 
-import java.util.Set;
-
 import dao.SubteDao;
-import datos.Colectivo;
-import datos.EstacionSubte;
+import datos.LineaSubte;
 import datos.Subte;
 
 public class SubteABM {
 	private SubteDao dao = new SubteDao();
 
-	public int agregarSubte(int tipoTransporte, String descripcion,char linea, Set<EstacionSubte> lstEstaciones) {
-		Subte c = new Subte (tipoTransporte,descripcion,linea,lstEstaciones);
+	public int agregarSubte(int tipoTransporte, String descripcion, LineaSubte lineaSubte) {
+		Subte c = new Subte (tipoTransporte,descripcion,lineaSubte);
 		return dao.agregar(c);
 	}
 
@@ -30,5 +27,3 @@ public class SubteABM {
 	}
 	
 }
-
-	

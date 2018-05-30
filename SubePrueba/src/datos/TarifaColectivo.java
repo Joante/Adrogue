@@ -3,7 +3,7 @@ package datos;
 public class TarifaColectivo extends Tarifa {
 	private long idTarifaColectivo;
 	private SeccionColectivo seccion;
-	
+
 	public TarifaColectivo() {}
 
 	public TarifaColectivo(double valorTarifa, SeccionColectivo seccion) {

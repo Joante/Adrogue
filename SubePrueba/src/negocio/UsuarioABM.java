@@ -7,8 +7,7 @@ import datos.Usuario;
 public class UsuarioABM {
 	private UsuarioDao dao = new UsuarioDao();
 
-	public int agregarUsuario(String nombre, String apellido,
-			long dni){
+	public int agregarUsuario(String nombre, String apellido,long dni){
 		Usuario u = new Usuario (nombre, apellido,dni);
 		return dao.agregarUsuario(u);
 	}

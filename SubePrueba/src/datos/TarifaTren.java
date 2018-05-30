@@ -5,6 +5,7 @@ public class TarifaTren extends Tarifa {
 	private EstacionTren estacionSubida;
 	private EstacionTren estacionBajada;
 	private SeccionTren seccion;
+	private boolean cobroViaje = false;
 	
 	
 	public TarifaTren() {}
@@ -54,6 +55,19 @@ public class TarifaTren extends Tarifa {
 
 	public void setSeccion(SeccionTren seccion) {
 		this.seccion = seccion;
+	}
+		
+	public boolean isCobroViaje() {
+		return cobroViaje;
+	}
+
+	public void setCobroViaje(boolean cobroViaje) {
+		this.cobroViaje = cobroViaje;
+	}
+
+	@Override
+	public String toString() {
+		return "TarifaTren [idTarifaTren=" + idTarifaTren + ", estacionSubida=" + estacionSubida  + ", seccion=" + seccion + "]";
 	}
 	
 	

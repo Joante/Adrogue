@@ -24,12 +24,10 @@ public class SeccionTrenABM {
 	public SeccionTren traerSeccionTren(long idSeccionTren){
 		return dao.traerSeccionTren(idSeccionTren);
 	}
-	
-	
-
-	
-
-
-	
-
+	public double traerValorSeccionComun(long idSeccionTren) {
+		return dao.traerValorSeccionNormal(idSeccionTren);
+	}
+	public double traerValorSeccionTarifaSocial(long idSeccionTren) {
+		return dao.traerValorSeccionTarifaSocial(idSeccionTren);
+	}
 }

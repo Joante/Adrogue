@@ -3,6 +3,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import datos.Tarjeta;
 
 public class TarjetaDao {
@@ -77,4 +78,27 @@ public class TarjetaDao {
 		}
 		return objeto;
 	}
+	public Tarjeta traerTarjetaNro(long nroTarjeta) throws HibernateException{
+		Tarjeta objeto = null;
+		try {
+			iniciaOperacion();
+			String hql= "from Tarjeta c inner join fetch c.usuario where c.nroTarjeta ="+nroTarjeta;
+			objeto =  (Tarjeta) session.createQuery(hql).uniqueResult();
+		} finally {
+			session .close();
+		}
+		return objeto;
+	}
+	public void actualizarSaldo(Tarjeta objeto) throws HibernateException {
+		try {
+			iniciaOperacion();
+			session.update(objeto);
+			tx .commit();
+		} catch (HibernateException he) {manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+	}
 }
+

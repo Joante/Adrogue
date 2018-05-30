@@ -2,6 +2,7 @@ package test;
 
 import negocio.EstacionTrenABM;
 import negocio.LineaTrenABM;
+import negocio.TrenABM;
 import negocio.SeccionColectivoABM;
 import negocio.SeccionSubteABM;
 import negocio.SeccionTrenABM;
@@ -45,27 +46,28 @@ public class TestAgregarObjeto {
 				
 				//-------------------------------------AGREGAR LINEA TREN--------------------------------------------
 				
-				LineaTrenABM lineaTrenABM = new LineaTrenABM();
+				LineaTrenABM lineatrenABM = new LineaTrenABM();
 				
-				lineaTrenABM.agregarLineaTren("Linea General Roca");
-				
+				lineatrenABM.agregarLineaTren("Linea General Roca");
+				TrenABM trenABM = new TrenABM();
+				trenABM.agregarTren(1, "Tren", lineatrenABM.traerLineaTren(1));
 				//------------------------------------ AGREGAR ESTACIONES DE TREN-----------------------------
 				EstacionTrenABM estacionTrenABM= new EstacionTrenABM();
 				
 				
-				estacionTrenABM.agregarEstacionTren("Plaza Constitucion",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Hipolito Yrigoyen",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Damian Santillan y Maximiliano Kosteki",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Gerli",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Lanús",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Remedios de Escalada",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Banfield",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Lomas de Zamora",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Temperley",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Adrogue",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Burzaco",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Longchamps",lineaTrenABM.traerLineaTren(1));
-				estacionTrenABM.agregarEstacionTren("Glew",lineaTrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Plaza Constitucion",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Hipolito Yrigoyen",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Damian Santillan y Maximiliano Kosteki",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Gerli",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Lanús",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Remedios de Escalada",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Banfield",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Lomas de Zamora",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Temperley",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Adrogue",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Burzaco",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Longchamps",lineatrenABM.traerLineaTren(1));
+				estacionTrenABM.agregarEstacionTren("Glew",lineatrenABM.traerLineaTren(1));
 			
 				
 				//------------------------------------ AGREGAR TARIFA TREN------------------------------------

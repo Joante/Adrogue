@@ -35,6 +35,12 @@ public class Transporte {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "Transporte [idTransporte=" + idTransporte + ", tipoTransporte=" + tipoTransporte + ", descripcion="
+				+ descripcion + "]";
+	}
 	
 	
 	

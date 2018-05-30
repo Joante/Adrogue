@@ -3,11 +3,12 @@ package negocio;
 
 import dao.EstacionSubteDao;
 import datos.EstacionSubte;
+import datos.LineaSubte;
 public class EstacionSubteABM {
 	private EstacionSubteDao dao = new EstacionSubteDao();
 
-	public int agregarEstacionSubte(String nombre){
-		EstacionSubte c = new EstacionSubte (nombre);
+	public int agregarEstacionSubte(String nombre, LineaSubte lineaSubte){
+		EstacionSubte c = new EstacionSubte (nombre, lineaSubte);
 		return dao.agregar(c);
 	}
 

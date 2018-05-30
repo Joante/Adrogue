@@ -36,6 +36,12 @@ public class EstacionTren {
 	public void setLineaTren(LineaTren lineaTren) {
 		this.lineaTren = lineaTren;
 	}
+
+	@Override
+	public String toString() {
+		return "EstacionTren [idEstacionTren=" + idEstacionTren + ", nombre=" + nombre + ", lineaTren=" + lineaTren
+				+ "]";
+	}
 	
 	
 	

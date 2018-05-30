@@ -71,11 +71,12 @@ public class EstacionTrenDao {
 		EstacionTren objeto = null;
 		try {
 			iniciaOperacion();
-			objeto = (EstacionTren) session.get(EstacionTren.class, idEstacionTren);
-		}
-		finally {
-			session.close();
-		}
-		return objeto;
-	}
+			String hql= "from EstacionTren c inner join fetch c.lineaTren where c.idEstacionTren ="+idEstacionTren;
+			objeto = (EstacionTren) session.createQuery(hql).uniqueResult();
+			} finally {
+			session .close();
+			}
+			return objeto;
+			}
 }
+

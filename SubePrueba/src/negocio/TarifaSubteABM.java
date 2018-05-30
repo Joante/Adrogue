@@ -28,5 +28,20 @@ public class TarifaSubteABM {
 	public TarifaSubte traerTarifaSubte(long idTarifaSubte){
 		return dao.traerTarifaSubte(idTarifaSubte);
 	}
-	
+	public TarifaSubte calcularTarifaSubteComun(int cantViajes) {
+		SeccionSubteABM seccionSubteAbm = new SeccionSubteABM();
+		SeccionSubte seccion = seccionSubteAbm.traerSeccionSubte(cantViajes);
+		TarifaSubte tarifa=new TarifaSubte();
+		tarifa.setSeccion(seccion);
+		tarifa.setValorTarifa(seccion.getValorSubteNormal());
+		return tarifa;
+	}
+	public TarifaSubte calcularTarifaSubteTarifaSocal(int cantViajes) {
+		SeccionSubteABM seccionSubteAbm = new SeccionSubteABM();
+		SeccionSubte seccion = seccionSubteAbm.traerSeccionSubte(cantViajes);
+		TarifaSubte tarifa=new TarifaSubte();
+		tarifa.setSeccion(seccion);
+		tarifa.setValorTarifa(seccion.getValorSubteTarifaSocial());
+		return tarifa;
+	}
 }

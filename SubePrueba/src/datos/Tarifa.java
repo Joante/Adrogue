@@ -26,6 +26,11 @@ public class Tarifa {
 	public void setValorTarifa(double valorTarifa) {
 		this.valorTarifa = valorTarifa;
 	}
+
+	@Override
+	public String toString() {
+		return "Tarifa [idTarifa=" + idTarifa + ", valorTarifa=" + valorTarifa + "]";
+	}
 	
 	
 	

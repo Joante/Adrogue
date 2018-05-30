@@ -78,4 +78,26 @@ public class SeccionTrenDao {
 		}
 		return objeto;
 	}
+	public double traerValorSeccionNormal(long idSeccionTren)throws HibernateException {
+		double valor=0;
+		try {
+			iniciaOperacion();
+			valor = (double) session.createQuery("select valorSeccionComun from SeccionTren c where c.idSeccionTren="+idSeccionTren).uniqueResult();
+		} 
+		finally {
+			session.close();
+		}
+		return valor;
+	}
+	public double traerValorSeccionTarifaSocial(long idSeccionTren)throws HibernateException {
+		double valor=0;
+		try {
+			iniciaOperacion();
+			valor = (double) session.createQuery("select valorSeccionTarifaSocial from SeccionTren c where c.idSeccionTren="+idSeccionTren).uniqueResult();
+		} 
+		finally {
+			session.close();
+		}
+		return valor;
+	}
 }

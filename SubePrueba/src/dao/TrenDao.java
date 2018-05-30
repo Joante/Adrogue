@@ -1,8 +1,11 @@
 package dao;
+
+import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import datos.LineaTren;
 import datos.Tren;
 
 public class TrenDao {

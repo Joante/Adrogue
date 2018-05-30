@@ -1,11 +1,13 @@
 package datos;
 
+import java.util.Set;
+
 public class Usuario {
 	private long idUsuario;
 	private String nombre;
 	private String apellido;
 	private long dni;
-	
+	private Set<Tarjeta> tarjetas;
 	public Usuario() {}
 
 	public Usuario(String nombre, String apellido, long dni) {
@@ -45,6 +47,20 @@ public class Usuario {
 
 	public void setDni(long dni) {
 		this.dni = dni;
+	}
+
+	protected Set<Tarjeta> getTarjetas() {
+		return tarjetas;
+	}
+
+	protected void setTarjetas(Set<Tarjeta> tarjetas) {
+		this.tarjetas = tarjetas;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
+				+ "]";
 	}
 	
 	

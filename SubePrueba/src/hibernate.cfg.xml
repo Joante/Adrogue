@@ -22,6 +22,8 @@
 		<mapping resource = "mapeos/Movimiento.hbm.xml"/>
 		<mapping resource = "mapeos/Tarjeta.hbm.xml"/>
 		<mapping resource = "mapeos/Usuario.hbm.xml"/>
+		<mapping resource = "mapeos/LineaColectivo.hbm.xml"/>
 		<mapping resource = "mapeos/LineaTren.hbm.xml"/>
+		<mapping resource = "mapeos/LineaSubte.hbm.xml"/>
 	</session-factory >
 </hibernate-configuration >

@@ -1,13 +1,13 @@
 package dao;
-
-import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import datos.*;
 
-public class ColectivoDao {
+import datos.LineaColectivo;
+import datos.Tren;
+
+public class LineaColectivoDao {
 	private static Session session;
 	private Transaction tx;
 
@@ -21,7 +21,7 @@ public class ColectivoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
-	public int agregar(Colectivo objeto) {
+	public int agregar(LineaColectivo objeto) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -38,7 +38,7 @@ public class ColectivoDao {
 		return id;
 	}
 
-	public void actualizar(Colectivo objeto) throws HibernateException {
+	public void actualizar(LineaColectivo objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(objeto);
@@ -53,7 +53,7 @@ public class ColectivoDao {
 		}
 	}
 
-	public void eliminar(Colectivo objeto) throws HibernateException {
+	public void eliminar(LineaColectivo objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.delete(objeto);
@@ -68,12 +68,11 @@ public class ColectivoDao {
 		}
 	}
 
-	public Colectivo traerColectivo(long idColectivo) throws HibernateException {
-		Colectivo objeto = null;
+	public LineaColectivo traerLineaColectivo(long idLineaColectivo) throws HibernateException {
+		LineaColectivo objeto = null;
 		try {
 			iniciaOperacion();
-			String hql="from Transporte c inner join fetch c.lineaColectivo where c.idTransporte="+idColectivo;
-			objeto = (Colectivo) session.createQuery(hql).uniqueResult();
+			objeto = (LineaColectivo) session.get(LineaColectivo.class, idLineaColectivo);
 		}
 		finally {
 			session.close();

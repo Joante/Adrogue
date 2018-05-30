@@ -1,45 +1,45 @@
 package datos;
+
 import java.util.Set;
 
-public class Subte extends Transporte {
-	private long idSubte;
-	private char linea;
-	private Set<EstacionSubte> lstEstaciones;
+public class Subte extends Transporte{
+	
+	private long idLineaSubte;
+	private LineaSubte lineaSubte;
+	private Set<EstacionSubte> lstEstacion;
 	
 	public Subte() {}
-	
 
-	public Subte(int tipoTransporte, String descripcion,char linea, Set<EstacionSubte> lstEstaciones) {
+	public Subte(int tipoTransporte, String descripcion, LineaSubte lineaSubte) {
 		super(tipoTransporte, descripcion);
-		this.linea = linea;
-		this.lstEstaciones = lstEstaciones;
+		this.lineaSubte = lineaSubte;
 	}
 
 
-	public long getIdSubte() {
-		return idSubte;
+
+	public long getIdLineaSubte() {
+		return idLineaSubte;
 	}
 
-	public void setIdSubte(long idSubte) {
-		this.idSubte = idSubte;
+	public void setIdLineaSubte(long idLineaSubte) {
+		this.idLineaSubte = idLineaSubte;
 	}
 
-	public char getLinea() {
-		return linea;
+	public LineaSubte getLineaSubte() {
+		return lineaSubte;
 	}
 
-	public void setLinea(char linea) {
-		this.linea = linea;
+	public void setLineaSubte(LineaSubte lineaSubte) {
+		this.lineaSubte = lineaSubte;
 	}
 
-	public Set<EstacionSubte> getLstEstaciones() {
-		return lstEstaciones;
+	public Set<EstacionSubte> getLstEstacion() {
+		return lstEstacion;
 	}
 
-	public void setLstEstaciones(Set<EstacionSubte> lstEstaciones) {
-		this.lstEstaciones = lstEstaciones;
+	public void setLstEstacion(Set<EstacionSubte> lstEstacion) {
+		this.lstEstacion = lstEstacion;
 	}
-	
 	
 	
 	

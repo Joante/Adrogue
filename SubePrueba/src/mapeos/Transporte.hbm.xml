@@ -11,24 +11,18 @@
 		
 		<joined-subclass name = "datos.Subte" table = "subte" >
 			<key column = "idSubte" />
-			<property column="linea" name="linea" type="char"/>
-			
-			<set name = "lstEstaciones" cascade = "save-update" table = "estacionSubte" order-by = "idEstacionSubte asc" inverse = "true" lazy = "true" fetch = "select" >
-				<key column = "idSubte" not-null = "true" />
-				<one-to-many class = "datos.EstacionSubte" />
-			</set >
+			<many-to-one name = "lineaSubte" class = "datos.LineaSubte" column = "idLineaSubte" cascade="all" not-null = "true" />
 		</joined-subclass>
 		
 		<joined-subclass name = "datos.Colectivo" table = "colectivo" >
 			<key column = "idColectivo" />
-			<property column="empresa" name="empresa" type="string"/>
-			<property column="linea" name="linea" type="long"/>
-			<property column="interno" name="interno" type="long"/>	
+			<property column="interno" name="interno" type="long"/>
+			<many-to-one name = "lineaColectivo" class = "datos.LineaColectivo" column = "idLineaColectivo" cascade="all" not-null = "true" />
 		</joined-subclass>
 		
 		<joined-subclass name = "datos.Tren" table = "tren" >
 			<key column = "idTren" />
-			<many-to-one name = "lineaTren" class = "datos.LineaTren" column = "LineaTren" not-null = "true" />
+			<many-to-one name = "lineaTren" class = "datos.LineaTren" column = "idLineaTren" cascade="all" not-null = "true" />
 		</joined-subclass>
 		
 	</class>

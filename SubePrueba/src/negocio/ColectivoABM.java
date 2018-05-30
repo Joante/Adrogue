@@ -2,18 +2,22 @@ package negocio;
 
 
 import dao.ColectivoDao;
+import dao.LineaColectivoDao;
 import datos.Colectivo;
+import datos.LineaColectivo;
+import datos.LineaTren;
+import datos.Tren;
 
 public class ColectivoABM {
 	private ColectivoDao dao = new ColectivoDao();
 
-	public int agregarColectivo(int tipoTransporte, String descripcion,String empresa, long linea, long interno) {
-		Colectivo c = new Colectivo (tipoTransporte,descripcion,empresa,linea,interno);
+	public int agregarColectivo(int tipoTransporte, String descripcion,long interno, LineaColectivo lineaColectivo) {
+		Colectivo c = new Colectivo (tipoTransporte, descripcion,interno,lineaColectivo);
 		return dao.agregar(c);
 	}
 
-	public void modificarColectivo(Colectivo colectivo){
-		dao.actualizar(colectivo);
+	public void modificarColectivo(Colectivo Colectivo){
+		dao.actualizar(Colectivo);
 	}
 
 	public void eliminarColectivo(long idColectivo){
@@ -26,8 +30,3 @@ public class ColectivoABM {
 	}
 	
 }
-
-	
-
-
-	

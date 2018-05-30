@@ -4,6 +4,9 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import datos.EstacionTren;
+import datos.SeccionTren;
 import datos.TarifaTren;
 
 public class TarifaTrenDao {
@@ -77,5 +80,16 @@ public class TarifaTrenDao {
 			session.close();
 		}
 		return objeto;
+	}
+	public TarifaTren traerSeccion(EstacionTren EstacionSubida, EstacionTren EstacionBajada) {
+		TarifaTren c = null;
+		try {
+			iniciaOperacion();
+			c = (TarifaTren) session.createQuery("from TarifaTren c where c.estacionSubida="+EstacionSubida+"and c.estacionBajada="+EstacionBajada);
+		}
+		finally {
+			session.close();
+		}
+		return c;
 	}
 }

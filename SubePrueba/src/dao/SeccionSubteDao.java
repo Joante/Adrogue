@@ -78,5 +78,17 @@ public class SeccionSubteDao {
 		}
 		return objeto;
 	}
+	public SeccionSubte traerSeccionSubte (int cantidadDeViajes) throws HibernateException{
+		SeccionSubte objeto= null;
+		try {
+			iniciaOperacion();
+			String hql= "from SeccionSubte c where c.cantidadViajesMinimo between "+cantidadDeViajes+"and "+(cantidadDeViajes+1);
+			objeto = (SeccionSubte) session.createQuery(hql).uniqueResult();
+		}
+		finally {
+			session.close();
+		}
+		return objeto;
+	}
 	
 }

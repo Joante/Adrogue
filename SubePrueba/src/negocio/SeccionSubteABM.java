@@ -25,7 +25,9 @@ public class SeccionSubteABM {
 	public SeccionSubte traerSeccionSubte(long idSeccionSubte){
 		return dao.traerSeccionSubte(idSeccionSubte);
 	}
-	
+	public SeccionSubte traerSeccionSubte(int cantViajes) {
+		return dao.traerSeccionSubte(cantViajes);
+	}
 }
 
 	

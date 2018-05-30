@@ -58,6 +58,12 @@ public class Movimiento {
 	public void setTransporte(Transporte transporte) {
 		this.transporte = transporte;
 	}
+
+	@Override
+	public String toString() {
+		return "Movimiento [idMovimiento=" + idMovimiento + ", tarjeta=" + tarjeta + ", tarifa=" + tarifa
+				+ ", transporte=" + transporte + "]";
+	}
 	
 	
 	
