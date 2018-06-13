@@ -35,6 +35,9 @@ public class MovimientoABM {
 	public List<Movimiento> traerMovimientos(long idTarjeta){
 		return dao.traerMovimientos(idTarjeta);
 	}
+	public List<Movimiento> traerMasMovimientos(long idTarjeta,long id){
+		return dao.traerMasMovimientos(idTarjeta,id);
+	}
 	public void agregarMovimientoTren(GregorianCalendar fecha, long nroTarjeta, int estacionSubida, int estacionBajada) throws Exception {
 		
 		TarifaTrenABM tarifaTrenABM = new TarifaTrenABM();

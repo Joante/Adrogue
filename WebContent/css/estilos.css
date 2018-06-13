@@ -203,3 +203,17 @@ h1{
 h3,.sub,h2{
 	font-family: "Crosshatcher D";
 }
+
+
+.tabla {
+	width:70%;
+	font:normal 13px Arial;
+	text-align:left;
+	border-collapse:collapse;
+	background-color: white;
+}
+
+table th {
+	font:bold 15px Arial;
+	background-color:lightblue;
+}

@@ -193,8 +193,7 @@ th {
   *:before,
   *:after {
     color: #000 !important;
-    text-shadow: none !important;
-    background: transparent !important;
+    text-shadow: none !important;!important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
   }
@@ -2249,7 +2248,7 @@ pre code {
   }
 }
 table {
-  background-color: transparent;
+  background-color: white;
 }
 caption {
   padding-top: 8px;

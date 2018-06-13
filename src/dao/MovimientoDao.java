@@ -97,6 +97,20 @@ public class MovimientoDao {
 		 }
 		 return lista;
 	}
+	@SuppressWarnings("unchecked")
+	public List<Movimiento> traerMasMovimientos(long idTarjeta, long id) throws HibernateException{
+		List<Movimiento> lista = null;
+		 try {
+			 iniciaOperacion();
+			 Query query = session.createQuery("from Movimiento c inner join fetch c.tarjeta inner join fetch c.tarifa inner join fetch c.transporte where c.tarjeta="+idTarjeta+"and c.idMovimiento <"+id+" order by fechaHora desc");
+			 query.setMaxResults(15);
+			 lista = query.list();
+		 }
+		 finally {
+			 session.close();
+		 }
+		 return lista;
+	}
 	
 	
 }
