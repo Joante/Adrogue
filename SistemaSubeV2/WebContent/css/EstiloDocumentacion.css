@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "Rodi de Asis";
+  src: url("../Fuentes/Rodi de Asis.ttf");
+}
+
+@font-face {
+  font-family: "Crosshatcher D";
+  src: url("../Fuentes/Crosshatcher D.otf");
+}
+
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	background:url(../Imagenes/Fondo.jpg);
+	background-size: 100% 100%;
+	background-attachment:fixed;
+}
+
+.titulo{
+  padding: 20px;
+}
+
+
+h2{
+  font-size: 60px;
+  font-family: "Crosshatcher D";
+  color:rgb(168, 0, 0);
+  text-align: center;
+
+}
+
+
+/* MENU DE NAVEGACION*/
+header nav ul{
+	list-style:none;/*quita los puntos que vienen por defecto en la lista */
+}
+
+header nav ul li a{/*Entramos a los enlaces(a) que hay en los elementos de la lista */
+  background-color:rgb(168, 0, 0);
+  border:rgb(100, 0, 0) solid;
+  padding: auto auto;
+  font-size: 110%;
+  font-family: "Crosshatcher D";
+	color:#fff;
+	text-decoration:none;/*quitamos subrayados*/
+  border-radius: 10px;
+}
+
+header nav ul li a:hover{/*cambia del color nuestro menu cuando detecta el mouse */
+	background:#000;
+}
+
+.boton1{
+  position: absolute;
+  top: 50%;
+  left: 3%;
+}
+
+.boton1:active{
+  transform: scale(0.95);
+}
+
+iframe{
+  width: 50%;
+  height: 80%;
+  border-radius: 20px;
+}
+
+p{
+  text-align: center;
+}

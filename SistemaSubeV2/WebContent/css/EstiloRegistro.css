@@ -1,0 +1,111 @@
+*{
+	box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Crosshatcher D";
+  src: url("../Fuentes/Crosshatcher D.otf");
+}
+
+body{
+
+	background:url(../Imagenes/Fondo.jpg);
+	background-size: 100% 100%;
+	background-attachment:fixed;
+	margin:0;
+	font-family: sans-serif;
+	
+}
+
+.titulo{
+	font-family: "Crosshatcher D";
+	color:rgb(168, 0, 0);
+	text-align: center;
+	font-size: 60px;
+
+}
+
+.sub{
+	font-family: "Crosshatcher D";
+	background: deepskyblue;
+	color:rgba(168,0,0,1);
+	padding: 20px;
+	text-align: center;
+	font-size: 30px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom: 5px solid crimson;
+	opacity: 0.7;
+}
+
+.formulario{
+	width: 95%;
+	max-width: 500px;
+	margin: auto;
+	background: rgba(133, 133, 133,0.4);
+	border-radius: 20px;
+}
+
+
+
+
+.contenedor{
+	padding: 10px 30px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+}
+
+input{
+	margin-bottom: 15px;
+	padding: 15px;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid gray;
+}
+
+.chico{
+	width: 48%;
+}
+
+.grande{
+	width: 100%;
+}
+
+.boton{
+	font-family: "Crosshatcher D";
+	background: linear-gradient(#CB0000,#A80000);
+	color:#fff;
+	margin:auto;
+	padding:10px 40px;
+	width: 100%;
+	border-radius: 20px;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.boton:active{
+	transform: scale(0.95);
+}
+
+
+
+.boton:hover{
+	opacity: 1;
+}
+
+p{
+
+	width: 100%;
+	text-align: center;
+	margin: 10px;
+	font-size: 14px;
+	opacity: 1;
+}
+
+a{	
+	color:black;
+	font-family: "Crosshatcher D";
+	opacity: 1;
+}
