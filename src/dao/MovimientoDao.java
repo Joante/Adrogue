@@ -112,5 +112,19 @@ public class MovimientoDao {
 		 return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Movimiento> traerMovimientoTransporte(GregorianCalendar fechaHoraInicio, GregorianCalendar fechaHoraFinal,int tipoTransporte) throws HibernateException {
+		List<Movimiento> lista = null;
+		try {
+			iniciaOperacion();
+			String hQL=("from Movimiento m where m.transporte.tipoTransporte=:tipoTransporte and m.fechaHora between :fechaHoraInicio and :fechaHoraFinal");   
+			lista=session.createQuery(hQL).setParameter("fechaHoraInicio", fechaHoraInicio).setParameter("fechaHoraFinal", fechaHoraFinal).setParameter("tipoTransporte", tipoTransporte).list();    
+		}
+		finally {
+			session.close();
+		}
+		return lista;
+	}
+	
 	
 }

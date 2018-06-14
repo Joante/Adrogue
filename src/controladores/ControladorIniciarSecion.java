@@ -63,7 +63,12 @@ public class ControladorIniciarSecion extends HttpServlet {
 			salida.println( "<div class=\"container\">" );
 			salida.println( "</div>" );
 			salida.println( "</header>" );
-			salida.println("<div>");
+			salida.println("<div class=\"container\">");
+			salida.println("<div class=\"left\">");
+			salida.println( "<A href=\"/SistemaSubeV2/Consultas.html\">Consultas</A>");
+			salida.println( "<A href=\"/SistemaSubeV2/AgregarMovimiento.html\">AgregarMovimiento</A>" );
+			salida.println("</div>");
+			salida.println("<div class=\"center\">");
 			salida.println("<table id=\"movimientos\" width=\"70%\" cellpadding=\"8\" border=\"1\" bgcolor=\"#FFFEFD\">");
 			salida.println("<tr valign=\"top\">");
 			salida.println("<th>Fecha y Hora</th><th>Transporte</th><th>Linea</th><th>Detalle</th><th>Valor</th>");
@@ -104,6 +109,7 @@ public class ControladorIniciarSecion extends HttpServlet {
 			salida.println("</table>");
 			salida.println("<div style=\"text-align: center\">");
 			salida.println("<input type=\"button\" name=\"Ver mas\" value=\"Ver Mas\" onclick=\"vermas()\">");
+			salida.println("</div>");
 			salida.println("</div>");
 			salida.println("</div>");
 			salida.println( "<A href=\"/SistemaSubeV2/Login.html\">Cerrar Sesion</A>" );
