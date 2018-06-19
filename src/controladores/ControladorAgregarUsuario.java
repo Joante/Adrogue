@@ -50,6 +50,9 @@ public class ControladorAgregarUsuario extends HttpServlet {
 			
 			TarjetaABM tarjetaABM= new TarjetaABM();
 			tarjetaABM.agregarTarjeta(numTarjeta2, saldo, tarifaS,usuarioAux);
+			RedSubeABM redSube = new RedSubeABM();
+			Tarjeta tarjeta = new Tarjeta(numTarjeta2,saldo,tarifaS,usuarioAux);
+			redSube.agregarRedSube(0, tarjeta.getNroTarjeta());
 			response.setStatus(200);/*
 			PrintWriter salida = response.getWriter();
 			salida.println("");

@@ -12,7 +12,9 @@ import datos.Tarjeta;
 public class RedSubeABM {
 	private RedSubeDao dao = new RedSubeDao();
 
-	public int agregarRedSube(int ultimoTipoTransporte, Tarjeta tarjeta) {
+	public int agregarRedSube(int ultimoTipoTransporte, long nroTarjeta) throws Exception {
+		TarjetaABM tarjetaAbm = new TarjetaABM();
+		Tarjeta tarjeta = tarjetaAbm.traerTarjeta2(nroTarjeta);
 		RedSube c = new RedSube (ultimoTipoTransporte, tarjeta);
 		return dao.agregar(c);
 	}

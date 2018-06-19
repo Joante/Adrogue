@@ -6,6 +6,7 @@ import dao.TarifaTrenDao;
 import datos.EstacionTren;
 import datos.SeccionTren;
 import datos.TarifaTren;
+import datos.ValoresEstacionesTren;
 
 
 public class TarifaTrenABM {
@@ -46,5 +47,60 @@ public class TarifaTrenABM {
 			throw new Exception("La tarifaTren con la estacionSubida "+ estacionSubida+ " estacionBajada " +estacionBajada+" no existe");
 		}
 		return c;
+	}
+	public TarifaTren traerUltima () {
+		return dao.traerUltima();
+	}
+	public TarifaTren calcularCobroValorNormal(long EstacionSubida) throws Exception {
+		
+		SeccionTrenABM seccionTrenAbm = new SeccionTrenABM();
+		SeccionTren seccion = seccionTrenAbm.traerMaxima();
+		EstacionTrenABM estacionTren = new EstacionTrenABM();
+		EstacionTren estacion = estacionTren.traerEstacionTren(EstacionSubida);
+		TarifaTren tarifa = new TarifaTren(seccion.getValorSeccionComun(),estacion,estacion,seccion);
+		dao.agregar(tarifa);
+		return tarifa;
+	}
+	
+	public TarifaTren calcularCobroValorTarifaSocial(long EstacionSubida) throws Exception {
+		
+		SeccionTrenABM seccionTrenAbm = new SeccionTrenABM();
+		SeccionTren seccion = seccionTrenAbm.traerMaxima();
+		EstacionTrenABM estacionTren = new EstacionTrenABM();
+		EstacionTren estacion = estacionTren.traerEstacionTren(EstacionSubida);
+		TarifaTren tarifa = new TarifaTren(seccion.getValorSeccionTarifaSocial(),estacion,estacion,seccion);
+		dao.agregar(tarifa);
+		return tarifa;
+	}
+	
+	public TarifaTren calcularDevolucionNormal (int estacionSubida,int estacionBajada) throws Exception{
+		
+		SeccionTrenABM seccionTrenAbm = new SeccionTrenABM();
+		SeccionTren seccionMaxima = seccionTrenAbm.traerMaxima();
+		ValoresEstacionesTrenABM valoresAbm = new ValoresEstacionesTrenABM();
+		ValoresEstacionesTren valores = valoresAbm.traerValoresEstacionesTren(estacionSubida, estacionBajada);
+		SeccionTren seccionDevolucion = seccionTrenAbm.traerSeccionTren(valores.getSeccion().getIdSeccionTren());
+		double valorDevolucion = (seccionMaxima.getValorSeccionComun()-seccionDevolucion.getValorSeccionComun())*-1;
+		EstacionTrenABM estacionTrenAbm = new EstacionTrenABM();
+		EstacionTren estacionSubida1 = estacionTrenAbm.traerEstacionTren(estacionSubida);
+		EstacionTren estacionBajada1 = estacionTrenAbm.traerEstacionTren(estacionBajada);
+		TarifaTren tarifa = new TarifaTren(valorDevolucion, estacionSubida1,estacionBajada1,seccionDevolucion);
+		dao.agregar(tarifa);
+		return tarifa;
+	}
+	public TarifaTren calcularDevolucionTarifaSocial (int estacionSubida, int estacionBajada) throws Exception{
+		
+		SeccionTrenABM seccionTrenAbm = new SeccionTrenABM();
+		SeccionTren seccionMaxima = seccionTrenAbm.traerMaxima();
+		ValoresEstacionesTrenABM valoresAbm = new ValoresEstacionesTrenABM();
+		ValoresEstacionesTren valores = valoresAbm.traerValoresEstacionesTren(estacionSubida, estacionBajada);
+		SeccionTren seccionDevolucion = seccionTrenAbm.traerSeccionTren(valores.getSeccion().getIdSeccionTren());
+		double valorDevolucion = (seccionMaxima.getValorSeccionTarifaSocial()-seccionDevolucion.getValorSeccionTarifaSocial())*-1;
+		EstacionTrenABM estacionTrenAbm = new EstacionTrenABM();
+		EstacionTren estacionSubida1 = estacionTrenAbm.traerEstacionTren(estacionSubida);
+		EstacionTren estacionBajada1 = estacionTrenAbm.traerEstacionTren(estacionBajada);
+		TarifaTren tarifa = new TarifaTren(valorDevolucion, estacionSubida1,estacionBajada1,seccionDevolucion);
+		dao.agregar(tarifa);
+		return tarifa;
 	}
 }

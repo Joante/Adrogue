@@ -9,8 +9,8 @@ public class Tarjeta {
 	private Usuario usuario;
 	private int contadorViajesSubte;
 	private int mesDescuentoViajesSubte;
-	private boolean cobroOdevolucionTren;
 	private boolean activa;
+	private boolean cobroOdevolucionTren;
 	private Set<Movimiento> lstMovimientos;
 	
 	public Tarjeta() {}
@@ -21,9 +21,9 @@ public class Tarjeta {
 		this.saldo = saldo;
 		this.tarifaSocial = tarifaSocial;
 		this.usuario=usuario;
-		this.cobroOdevolucionTren=false;
 		this.contadorViajesSubte=1;
 		this.activa=true;
+		this.cobroOdevolucionTren=true;
 	}
 
 	public long getIdTarjeta() {
@@ -73,14 +73,6 @@ public class Tarjeta {
 	public void setContadorViajesSubte(int contadorViajesSubte) {
 		this.contadorViajesSubte = contadorViajesSubte;
 	}
-
-	public boolean isCobroOdevolucionTren() {
-		return cobroOdevolucionTren;
-	}
-
-	public void setCobroOdevolucionTren(boolean cobroOdevolucionTren) {
-		this.cobroOdevolucionTren = cobroOdevolucionTren;
-	}
 	
 	public int getMesDescuentoViajesSubte() {
 		return mesDescuentoViajesSubte;
@@ -106,6 +98,14 @@ public class Tarjeta {
 		this.activa = activa;
 	}
 	
+
+	public boolean isCobroOdevolucionTren() {
+		return cobroOdevolucionTren;
+	}
+
+	public void setCobroOdevolucionTren(boolean cobroOdevolucionTren) {
+		this.cobroOdevolucionTren = cobroOdevolucionTren;
+	}
 
 	@Override
 	public String toString() {

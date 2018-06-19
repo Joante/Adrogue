@@ -1,62 +1,52 @@
 package datos;
 
-public class TarifaTren extends Tarifa {
-	private long idTarifaTren;
-	private EstacionTren estacionSubida;
-	private EstacionTren estacionBajada;
-	private SeccionTren seccion;
+public class ValoresEstacionesTren {
+	public long idValores;
+	public EstacionTren estacionSubida;
+	public EstacionTren estacionBajada;
+	public SeccionTren seccion;
 	
-	
-	public TarifaTren() {}
+	public ValoresEstacionesTren() {
+	}
 
-	public TarifaTren(double valorTarifa,EstacionTren estacionSubida, EstacionTren estacionBajada, SeccionTren seccion) {
-		super(valorTarifa);
+	public ValoresEstacionesTren(EstacionTren estacionSubida, EstacionTren estacionBajada, SeccionTren seccion) {
 		this.estacionSubida = estacionSubida;
 		this.estacionBajada = estacionBajada;
 		this.seccion = seccion;
 	}
-
-
-	public long getIdTarifaTren() {
-		return idTarifaTren;
-	}
-
-
-	public void setIdTarifaTren(long idTarifaTren) {
-		this.idTarifaTren = idTarifaTren;
-	}
-
 
 	public EstacionTren getEstacionSubida() {
 		return estacionSubida;
 	}
 
-
 	public void setEstacionSubida(EstacionTren estacionSubida) {
 		this.estacionSubida = estacionSubida;
 	}
-
 
 	public EstacionTren getEstacionBajada() {
 		return estacionBajada;
 	}
 
-
 	public void setEstacionBajada(EstacionTren estacionBajada) {
 		this.estacionBajada = estacionBajada;
 	}
-
 
 	public SeccionTren getSeccion() {
 		return seccion;
 	}
 
-
 	public void setSeccion(SeccionTren seccion) {
 		this.seccion = seccion;
 	}
 
+	public long getIdValores() {
+		return idValores;
+	}
+
+	protected void setIdValores(long idValores) {
+		this.idValores = idValores;
+	}
 	
 	
-	
+
 }

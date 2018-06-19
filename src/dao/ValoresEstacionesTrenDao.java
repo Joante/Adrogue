@@ -1,14 +1,11 @@
 package dao;
-import java.util.List;
-import org.hibernate.Hibernate;
+
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import datos.SeccionTren;
-import datos.Tarifa;
+import datos.ValoresEstacionesTren;
 
-public class SeccionTrenDao {
+public class ValoresEstacionesTrenDao {
 	private static Session session;
 	private Transaction tx;
 
@@ -22,7 +19,7 @@ public class SeccionTrenDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
-	public int agregar(SeccionTren objeto) {
+	public int agregar(ValoresEstacionesTren objeto) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -39,7 +36,7 @@ public class SeccionTrenDao {
 		return id;
 	}
 
-	public void actualizar(SeccionTren objeto) throws HibernateException {
+	public void actualizar(ValoresEstacionesTren objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(objeto);
@@ -54,7 +51,7 @@ public class SeccionTrenDao {
 		}
 	}
 
-	public void eliminar(SeccionTren objeto) throws HibernateException {
+	public void eliminar(ValoresEstacionesTren objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.delete(objeto);
@@ -69,24 +66,23 @@ public class SeccionTrenDao {
 		}
 	}
 
-	public SeccionTren traerSeccionTren(long idSeccionTren) throws HibernateException {
-		SeccionTren objeto = null;
+	public ValoresEstacionesTren traerValoresEstacionesTren(long idValoresEstacionesTren) throws HibernateException {
+		ValoresEstacionesTren objeto = null;
 		try {
 			iniciaOperacion();
-			objeto = (SeccionTren) session.get(SeccionTren.class, idSeccionTren);
+			objeto = (ValoresEstacionesTren) session.get(ValoresEstacionesTren.class, idValoresEstacionesTren);
 		}
 		finally {
 			session.close();
 		}
 		return objeto;
 	}
-	public SeccionTren traerMaxima() throws HibernateException {
-		SeccionTren objeto = null;
+	
+	public ValoresEstacionesTren traerValoresEstacionesTren(int estacionSubida, int estacionBajada) throws HibernateException {
+		ValoresEstacionesTren objeto = null;
 		try {
 			iniciaOperacion();
-			Query query = session.createQuery("from SeccionTren c order by c.idSeccionTren DESC");
-			query.setMaxResults(1);
-			objeto = (SeccionTren) query.uniqueResult();
+			objeto = (ValoresEstacionesTren) session.createQuery("from ValoresEstacionesTren c inner join fetch c.seccion where c.estacionSubida="+estacionSubida+"and c.estacionBajada="+estacionBajada).uniqueResult();
 		}
 		finally {
 			session.close();

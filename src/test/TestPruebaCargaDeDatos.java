@@ -1,14 +1,16 @@
 package test;
-import datos.*;
-import dao.*;
+
+
+import negocio.ColectivoABM;
 import negocio.EstacionTrenABM;
 import negocio.LineaTrenABM;
 import negocio.SeccionColectivoABM;
 import negocio.SeccionSubteABM;
 import negocio.SeccionTrenABM;
-import negocio.TarifaColectivoABM;
-import negocio.TarifaSubteABM;
+import negocio.SubteABM;
 import negocio.TarifaTrenABM;
+import negocio.TransporteABM;
+import negocio.ValoresEstacionesTrenABM;
 import negocio.TrenABM;
 
 
@@ -64,6 +66,7 @@ public abstract class TestPruebaCargaDeDatos {
 			trenAbm.agregarTren(1, "Tren", lineaTrenAbm.traerLineaTren(1));
 			
 			//------------------------------------ AGREGAR ESTACIONES DE TREN-----------------------------
+			
 			EstacionTrenABM estacionlineaTrenAbm= new EstacionTrenABM();
 			
 			estacionlineaTrenAbm.agregarEstacionTren("Plaza Constitucion",lineaTrenAbm.traerLineaTren(1));
@@ -86,129 +89,122 @@ public abstract class TestPruebaCargaDeDatos {
 			
 			//------------------------------------ AGREGAR TARIFA TREN------------------------------------
 			//------ DESDE CONSTITUCION HASTA GLEW
-			TarifaTrenABM tarifaTrenABM= new TarifaTrenABM();
+			ValoresEstacionesTrenABM valoresEstacionesTrenABM= new ValoresEstacionesTrenABM();
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(3));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(1),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(3));
 			
 			
 
 			//---------DESDE YRIGOYEN HASTA GLEW
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+					//-------- DESDE AVELLANEDA HASTA GLEW
 			
-			//-------- DESDE AVELLANEDA HASTA GLEW
-			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+						
 			//--------DESDE GERLI HASTA GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+					
 			//-----DESDE LANUS HASTA GLEW
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
-		
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+					
 		
 			
 			//------DESDE ESCALADA HASTA GLEW
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
 			
 			
 
 			//-----DESDE BANFIELD HASTA GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+						
 			
 			//----DESDE LOMAS HASTA GLEW
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(2));
+						
 			//-----DESDE TEMPERLEY HASTA GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
 			
 			
 			// ------ DESDE ADROGUE HASTA GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
 			
 			
 			//---- DESDE BURZACO HASTA GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 			
 			//--- DESDE LONGCHAMPS A GLEW
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(13),seccionlineaTrenAbm.traerSeccionTren(1));
 			
 			
 		
@@ -219,137 +215,153 @@ public abstract class TestPruebaCargaDeDatos {
 			//----DESDE GLEW A CONSTITUCION
 			
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(3));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(3));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(13),estacionlineaTrenAbm.traerEstacionTren(12),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 
 		
 			
 			//----DESDE LONGCHAMPS A CONSTITUCION
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(12),estacionlineaTrenAbm.traerEstacionTren(11),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 			
 			
 			//---DESDE BURZACO A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(11),estacionlineaTrenAbm.traerEstacionTren(10),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 			
 			//---DESDE ADROGUE A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(10),estacionlineaTrenAbm.traerEstacionTren(9),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 			
 			//---DESDE TEMPERLEY A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(9),estacionlineaTrenAbm.traerEstacionTren(8),seccionlineaTrenAbm.traerSeccionTren(1));
 			
 			
 			//---DESDE LOMAS A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
-			
-			
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(8),estacionlineaTrenAbm.traerEstacionTren(7),seccionlineaTrenAbm.traerSeccionTren(1));
+						
 			
 			
 			//---DESDE BANFIELD A CONSTITUCION
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(2));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(7),estacionlineaTrenAbm.traerEstacionTren(6),seccionlineaTrenAbm.traerSeccionTren(1));
+
 			
 			//---DESDE ESCALADA A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(6),estacionlineaTrenAbm.traerEstacionTren(5),seccionlineaTrenAbm.traerSeccionTren(1));
+								
 			
-					
 			//---DESDE LANUS A CONSTITUCION
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(5),estacionlineaTrenAbm.traerEstacionTren(4),seccionlineaTrenAbm.traerSeccionTren(1));
 			
 			
 			
 			//---DESDE GERLI A CONSTITUCION
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(4),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
 		
 			
 			//---DESDE AVELLANEDA A CONSTITUCION
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(3),estacionlineaTrenAbm.traerEstacionTren(3),seccionlineaTrenAbm.traerSeccionTren(1));
 			
-
+			
 			
 			//---DESDE YRIGOYEN A CONSTITUCION
 			
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
-			tarifaTrenABM.agregarTarifaTren(0,estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
-		}
-		catch(Exception e) {
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(1),seccionlineaTrenAbm.traerSeccionTren(1));
+			valoresEstacionesTrenABM.agregarValoresEstacionesTren(estacionlineaTrenAbm.traerEstacionTren(2),estacionlineaTrenAbm.traerEstacionTren(2),seccionlineaTrenAbm.traerSeccionTren(1));
+			
+			//*********Agregar Colectivo**********
+			ColectivoABM colectivoABM = new ColectivoABM();
+			colectivoABM.agregarColectivo(2, "Colectivo","Micro Omnibus Sur S.A.C." , 160, 1);
+			colectivoABM.agregarColectivo(2, "Colectivo", "Micro Omnibus Norte S.A", 60 , 65);
+			colectivoABM.agregarColectivo(2, "Colectivo", "Micro Omnibus Mitre S.A", 318, 457);
+			colectivoABM.agregarColectivo(2, "Colectivo", "Micro Omnibus Sur S.A.C", 514, 1025);
+			
+			//********Agregar Subte****************
+			SubteABM subteAbm = new SubteABM();
+			subteAbm.agregarSubte(3, "Subte", 'A');
+			subteAbm.agregarSubte(3, "Subte", 'B');
+			subteAbm.agregarSubte(3, "Subte", 'C');
+			subteAbm.agregarSubte(3, "Subte", 'D');
+			subteAbm.agregarSubte(3, "Subte", 'E');
+			subteAbm.agregarSubte(3, "Subte", 'H');
+			//***********Agregar Transporte para Recarga de Tarjeta***
+			TransporteABM transporte = new TransporteABM();
+			transporte.agregarTransporte(0, "Carga");
+			
+			
+		}	catch(Exception e) {
 			System.out.println("Error"+ e.getMessage());
 		}
 		}

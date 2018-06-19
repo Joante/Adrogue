@@ -1,9 +1,11 @@
 package dao;
-import java.util.List;
-import org.hibernate.Hibernate;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import datos.Tarifa;
 import datos.TarifaTren;
 
 public class TarifaTrenDao {
@@ -84,6 +86,19 @@ public class TarifaTrenDao {
 		try {
 			iniciaOperacion();
 			objeto = (TarifaTren) session.createQuery("from TarifaTren c inner join fetch c.seccion where c.estacionSubida="+estacionSubida+"and c.estacionBajada="+estacionBajada).uniqueResult();
+		}
+		finally {
+			session.close();
+		}
+		return objeto;
+	}
+	public TarifaTren traerUltima() throws HibernateException {
+		TarifaTren objeto = null;
+		try {
+			iniciaOperacion();
+			Query query = session.createQuery("from TarifaTren c order by c.idTarifa desc");
+			query.setMaxResults(1);
+			objeto = (TarifaTren) query.uniqueResult();
 		}
 		finally {
 			session.close();

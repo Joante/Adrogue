@@ -36,6 +36,9 @@ public class SeccionTrenABM {
 		return dao.traerSeccionTren(idSeccionTren);
 	}
 	
+	public SeccionTren traerMaxima() {
+		return dao.traerMaxima();
+	}
 	
 
 	

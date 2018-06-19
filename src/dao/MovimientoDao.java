@@ -125,6 +125,18 @@ public class MovimientoDao {
 		}
 		return lista;
 	}
-	
+	public Movimiento traerUltimo() throws HibernateException{
+		Movimiento objeto = null;
+		try {
+			iniciaOperacion();
+			Query query = session.createQuery("from Movimiento c inner join fetch c.tarjeta inner join fetch c.tarifa inner join fetch c.transporte order by fechaHora desc");
+			query.setMaxResults(1);
+			objeto = (Movimiento) query.uniqueResult();
+		}
+		finally {
+			session.close();
+		}
+		return objeto;
+	}
 	
 }

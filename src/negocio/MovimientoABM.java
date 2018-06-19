@@ -1,5 +1,4 @@
 package negocio;
-import negocio.*;
 import datos.*;
 
 import java.util.ArrayList;
@@ -8,9 +7,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import dao.MovimientoDao;
-import dao.TarifaTrenDao;
-import dao.TarjetaDao;
-import dao.TransporteDao;
 
 public class MovimientoABM {
 	private MovimientoDao dao = new MovimientoDao();
@@ -39,89 +35,111 @@ public class MovimientoABM {
 	public List<Movimiento> traerMasMovimientos(long idTarjeta,long id){
 		return dao.traerMasMovimientos(idTarjeta,id);
 	}
-	public void agregarMovimientoTren(GregorianCalendar fecha, long nroTarjeta, int estacionSubida, int estacionBajada) throws Exception {
+	public Movimiento traerUltimo() {
+		return dao.traerUltimo();
+	}
+	public void agregarMovimientoTren(GregorianCalendar fecha, long nroTarjeta, int estacion) throws Exception {
 		
 		TarifaTrenABM tarifaTrenABM = new TarifaTrenABM();
 		TarjetaABM tarjetaABM = new TarjetaABM();
 		TransporteABM transporteABM = new TransporteABM();
-		RedSubeABM redSubeABM = new RedSubeABM();
-
+		RedSubeABM redSube = new RedSubeABM();
 		
-		TarifaTren tarifaTren =  tarifaTrenABM.traerTarifaTren(estacionSubida, estacionBajada);
-		double valorTarifaSocial = tarifaTren.getSeccion().getValorSeccionTarifaSocial();
-		double valorComun = tarifaTren.getSeccion().getValorSeccionComun(); 
 		Tarjeta tarjeta = tarjetaABM.traerTarjeta2(nroTarjeta);
 		Transporte transporte = transporteABM.traerTransporte(1);
-		Tarifa tarifa=  new Tarifa();
-		tarifa = null;
-
+		Tarifa tarifa=  new TarifaTren();
+		TarifaTren tarifaTrenAux=tarifaTrenABM.traerUltima();
 		
-		
-		if(tarjeta.isTarifaSocial()==true) {
-			tarifaTren.setValorTarifa(valorTarifaSocial);
-			tarifa = (Tarifa) tarifaTren;
-			tarjeta.setSaldo(tarjeta.getSaldo()-valorTarifaSocial);
-			tarjetaABM.modificarTarjeta(tarjeta);
-			
-		
+		if(tarjeta.isCobroOdevolucionTren()) {
+			if(tarjeta.isTarifaSocial()) {
+				tarifa = tarifaTrenABM.calcularCobroValorTarifaSocial(estacion);
+			}
+			else{
+				tarifa = tarifaTrenABM.calcularCobroValorNormal(estacion);
+			}
+			tarjeta.setCobroOdevolucionTren(false);
 		}
-		else{
-			tarifaTren.setValorTarifa(valorComun);
-			tarifa = (Tarifa) tarifaTren;	
-			tarjeta.setSaldo(tarjeta.getSaldo()-valorComun);
-			tarjetaABM.modificarTarjeta(tarjeta);
+		else {
+			Movimiento movimiento = traerUltimo();
+			if(movimiento.getTransporte().getTipoTransporte()!=1) {
+				if(tarjeta.isTarifaSocial()) {
+					tarifa = tarifaTrenABM.calcularCobroValorTarifaSocial(estacion);
+				}
+				else{
+					tarifa = tarifaTrenABM.calcularCobroValorNormal(estacion);
+				}
+			}
+			else {
+				int estacionSubida = (int)tarifaTrenAux.getEstacionSubida().getIdEstacionTren();
+				if(tarjeta.isTarifaSocial()) {
+					tarifa = tarifaTrenABM.calcularDevolucionTarifaSocial(estacionSubida, estacion);
+				}
+				else{
+					tarifa = tarifaTrenABM.calcularDevolucionNormal(estacionSubida,estacion);
+				}
+			}
+			tarjeta.setCobroOdevolucionTren(true);
 		}
-
-		
-		Movimiento movimiento = new Movimiento(fecha,tarjeta,tarifa,transporte);
-		dao.agregar(movimiento);
+		Movimiento c= new Movimiento(fecha,tarjeta,tarifa,transporte);
+		Double valor=redSube.calcularRedSube(c);
+		tarjeta.setSaldo(tarjeta.getSaldo()-valor);
+		tarjetaABM.modificarTarjeta(tarjeta);
+		tarifa.setValorTarifa(valor);
+		c.setTarifa(tarifa);
+		dao.agregar(c);
 
 	}
 	public void agregarMovimientoColectivo(GregorianCalendar fecha, long nroTarjeta,int idSeccionColectivo) throws Exception {
+		//////////Busqueda de objetos///////////
 		TarjetaABM tarjetaAbm = new TarjetaABM();
 		Tarjeta tarjeta = tarjetaAbm.traerTarjeta2(nroTarjeta);
 		TransporteABM transporteAbm = new TransporteABM();
 		Transporte transporte = transporteAbm.traerTransporte(4);
 		TarifaColectivoABM tarifaColectivo= new TarifaColectivoABM();
-		Tarifa tarifa = new Tarifa();
+		Tarifa tarifa = new TarifaColectivo();
 		Movimiento c = null;
 		double valor;
 		RedSubeABM redSube = new RedSubeABM();
+		/////////////Calculo de Tarifa//////////////
 		if(tarjeta.isTarifaSocial()) {
-			tarifa= (Tarifa) tarifaColectivo.calcularTarifaColectivoTarifaSocial(idSeccionColectivo);
+			tarifa= tarifaColectivo.calcularTarifaColectivoTarifaSocial(idSeccionColectivo);
 		}
 		else {
-			tarifa = (Tarifa) tarifaColectivo.calcularTarifaColectivoComun(idSeccionColectivo);
+			tarifa = tarifaColectivo.calcularTarifaColectivoComun(idSeccionColectivo);
 		}
+		/////////Actualizaciones///////////////////
 		c= new Movimiento(fecha,tarjeta,tarifa,transporte);
 		valor=redSube.calcularRedSube(c);
 		tarifa.setValorTarifa(valor);
 		c.setTarifa(tarifa);
 		dao.agregar(c);
-	
 	}
 	
 	public void agregarMovimientoSubte(GregorianCalendar fecha, long nroTarjeta) throws Exception {
+		////////Busqueda de Objetos//////////////
 		TarjetaABM tarjetaAbm = new TarjetaABM();
 		Tarjeta tarjeta = tarjetaAbm.traerTarjeta2(nroTarjeta);
 		TransporteABM transporteAbm = new TransporteABM();
 		Transporte transporte = transporteAbm.traerTransporte(3);
 		TarifaSubteABM tarifaSubte= new TarifaSubteABM();
-		Tarifa tarifa = new Tarifa();
+		Tarifa tarifa = new TarifaSubte();
 		Movimiento c = null;
 		double valor;
 		RedSubeABM redSube = new RedSubeABM();
+		/////////Calculo descuentos Subte mensuales///////////////
 		if (tarjeta.getMesDescuentoViajesSubte()!=fecha.get(Calendar.MONTH)){
 			tarjeta.setMesDescuentoViajesSubte(fecha.get(Calendar.MONTH));
 			tarjeta.setContadorViajesSubte(1);
 			tarjetaAbm.modificarTarjeta(tarjeta);
 		}
+		///////////////Calculo Tarifa/////////////////
 		if(tarjeta.isTarifaSocial()) {
-			tarifa = (Tarifa) tarifaSubte.calcularTarifaSubteTarifaSocal(tarjeta.getContadorViajesSubte());
+			tarifa = tarifaSubte.calcularTarifaSubteTarifaSocal(tarjeta.getContadorViajesSubte());
 		}
 		else {
-			tarifa = (Tarifa) tarifaSubte.calcularTarifaSubteComun(tarjeta.getContadorViajesSubte());
+			tarifa = tarifaSubte.calcularTarifaSubteComun(tarjeta.getContadorViajesSubte());
 		}
+		/////////Actualizaciones///////////////
 		c= new Movimiento(fecha,tarjeta,tarifa,transporte);
 		valor=redSube.calcularRedSube(c);
 		tarifa.setValorTarifa(valor);
@@ -131,15 +149,19 @@ public class MovimientoABM {
 		tarjetaAbm.modificarTarjeta(tarjeta);
 		dao.agregar(c);
 	}
+//*************************************Movimiento Recarga***************************************	
 	public void agregarMovimientoRecarga(GregorianCalendar fecha, long nroTarjeta, double valor) throws Exception {
+		/////Busqueda de Objetos//////////
 		TarjetaABM tarjetaAbm = new TarjetaABM();
 		Tarjeta tarjeta = tarjetaAbm.traerTarjeta2(nroTarjeta);
 		TransporteABM transporteAbm = new TransporteABM();
 		Transporte transporte = transporteAbm.traerTransporte(5);
 		double saldo = tarjeta.getSaldo()+valor;
+		//////////Calculo de que la recarga sea mayor que el saldo negativo////////////
 		if(saldo<0) {
 			throw new Exception ("Error. Valor de recarga no supera saldo negativo");
 		}
+		//////Actualizaciones/////
 		tarjeta.setSaldo(saldo);
 		tarjetaAbm.modificarTarjeta(tarjeta);
 		TarifaABM tarifaAbm = new TarifaABM();

@@ -22,7 +22,7 @@
 			<key column = "idTarifaTren" />
 			<many-to-one name = "estacionSubida" class = "datos.EstacionTren" column = "EstacionTrenSubida" not-null = "true" />
 			<many-to-one name = "estacionBajada" class = "datos.EstacionTren" column = "EstacionTrenBajada" not-null = "true" />
-			<one-to-one name = "seccion" class = "datos.SeccionTren"/>
+			<many-to-one name = "seccion" class = "datos.SeccionTren" column="seccion" not-null="true"/>
 		</joined-subclass>
 	</class>
 </hibernate-mapping>
