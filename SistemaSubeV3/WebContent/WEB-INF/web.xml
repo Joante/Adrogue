@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+<display-name>SistemaSube</display-name>
+<welcome-file-list>
+	<welcome-file>Login.jsp</welcome-file>
+</welcome-file-list>
+ 
+<servlet>
+	<servlet-name>ControladorIniciarSecion</servlet-name>
+	<servlet-class>controladores.ControladorIniciarSecion</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorIniciarSecion</servlet-name>
+	<url-pattern>/MostrarSube</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorAgregarUsuario</servlet-name>
+	<servlet-class>controladores.ControladorAgregarUsuario</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorAgregarUsuario</servlet-name>
+	<url-pattern>/RegistrarUsuario</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorMovimientoTren</servlet-name>
+	<servlet-class>controladores.ControladorMovimientoTren</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorMovimientoTren</servlet-name>
+	<url-pattern>/MovimientoTren</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorMovimientoColectivo</servlet-name>
+	<servlet-class>controladores.ControladorMovimientoColectivo</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorMovimientoColectivo</servlet-name>
+	<url-pattern>/MovimientoColectivo</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorMovimientoSubte</servlet-name>
+	<servlet-class>controladores.ControladorMovimientoSubte</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorMovimientoSubte</servlet-name>
+	<url-pattern>/MovimientoSubte</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorMovimientoRecarga</servlet-name>
+	<servlet-class>controladores.ControladorMovimientoRecarga</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorMovimientoRecarga</servlet-name>
+	<url-pattern>/MovimientoRecarga</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorMostrarTabla</servlet-name>
+	<servlet-class>controladores.ControladorMostrarTabla</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorMostrarTabla</servlet-name>
+	<url-pattern>/MostrarTabla</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorEstadisticasColectivo</servlet-name>
+	<servlet-class>controladores.ControladorEstadisticasColectivo</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorEstadisticasColectivo</servlet-name>
+	<url-pattern>/EstadisticasColectivo</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorEstadisticasTren</servlet-name>
+	<servlet-class>controladores.ControladorEstadisticasTren</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorEstadisticasTren</servlet-name>
+	<url-pattern>/EstadisticasTren</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ControladorEstadisticasSubte</servlet-name>
+	<servlet-class>controladores.ControladorEstadisticasSubte</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorEstadisticasSubte</servlet-name>
+	<url-pattern>/EstadisticasSubte</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ControladorCerrarSesion</servlet-name>
+	<servlet-class>controladores.ControladorCerrarSesion</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorCerrarSesion</servlet-name>
+	<url-pattern>/CerrarSesion</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>ControladorConsultasSubte</servlet-name>
+	<servlet-class>controladores.ControladorConsultasSubte</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorConsultasSubte</servlet-name>
+	<url-pattern>/ConsultasSubte</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorConsultasColectivo</servlet-name>
+	<servlet-class>controladores.ControladorConsultasColectivo</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorConsultasColectivo</servlet-name>
+	<url-pattern>/ConsultasColectivo</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ControladorConsultasTren</servlet-name>
+	<servlet-class>controladores.ControladorConsultasTren</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorConsultasTren</servlet-name>
+	<url-pattern>/ConsultasTren</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>ControladorConsultasTransporte</servlet-name>
+	<servlet-class>controladores.ControladorConsultasTransporte</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ControladorConsultasTransporte</servlet-name>
+	<url-pattern>/ConsultasTransporte</url-pattern>
+</servlet-mapping>
+</web-app>
